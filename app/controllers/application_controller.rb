@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  layout(false)
+  layout('wrapper.html.erb')
 
   # Add your actions below this line
   # ================================
@@ -9,9 +9,17 @@ class ApplicationController < ActionController::Base
   end
 
   def play_rock 
-    #write code por play rock
-    # redirect_to("https://www.wikipedia.org")
-    # render({:html => '<h1>Hello world!</h1>'.html_safe})
+
+    @comp_move = ['rock','paper','scissors'].sample
+
+    if @comp_move == 'rock'
+      @outcome = 'tied'
+    elsif @comp_move == 'paper'
+      @outcome = 'lost'
+    elsif @comp_move == 'scissors'
+      @outcome = 'won'
+    end
+
     render({:template => 'game_templates/user_rock.html.erb'})
   end
 
